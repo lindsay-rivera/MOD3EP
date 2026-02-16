@@ -18,7 +18,7 @@ class Supplier(models.Model):
         return f"{self.name}, {self.city}, {self.country} (created at: {self.created_at})"
     
 class WaterBottle(models.Model):
-    sku = models.CharField(max_length=3, unique=True)
+    sku = models.CharField(max_length=10, unique=True)
     brand = models.CharField(max_length=100)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     size = models.CharField(max_length=100)
