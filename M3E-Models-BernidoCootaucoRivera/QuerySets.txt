@@ -21,7 +21,7 @@ Miggy:
 [P: RIVERALindsay] [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "Abbott, Inc.").order_by('-size')
 [P: RIVERALindsay] [S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('quantity')
 [P: RIVERALindsay] [S: COOTAUCOMiggy] Supplier.objects.filter(city__icontains="City")
-[P: BERNIDOBon] [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "BF Inc/")
+[P: BERNIDOBon] [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "BF Inc.")
 [P: BERNIDOBon] [S: COOTAUCOMiggy] WaterBottle.objects.filter(Q(color = 'red') | Q(color = 'orange'))
 	### Take note: must add "from django.db.models import Q" and site: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#or 
 [P: BERNIDOBon] [S: COOTAUCOMiggy] Supplier.objects.all().order_by('city')
@@ -32,7 +32,7 @@ Lindsay:
 [P: Given] [S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = 'Bucky Inc.') | WaterBottle.objects.filter(supplied_by__name = 'Meister Inc.')
 [P: Given] [S: RIVERALindsay] WaterBottle.objects.exclude(cost = 3000).filter(mouth_size = "Wide Mouth")
 [P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(color = "Blue")
-[P: COOTAUCOMiggy] [S: RIVERALindsay]WaterBottle.objects.filter(size__contains = "Liter")
+[P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(size__contains = "Liter")
 [P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "MGC Inc").order_by("-size")
 [P: BERNIDOBon] [S: RIVERALindsay] WaterBottle.objects.filter(mouth_size = "Standard Mouth").order_by("-cost")
 [P: BERNIDOBon] [S: RIVERALindsay] WaterBottle.objects.filter(cost__lte = 3000)
