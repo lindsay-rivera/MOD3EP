@@ -37,7 +37,7 @@ Miggy:
 [S: COOTAUCOMiggy] Supplier.objects.all().order_by('country') 
 
 [P: GIVEN] all black WaterBottles
-[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'black')
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'Black')
 
 [P: GIVEN] all WaterBottles that have Oz as the unit of its size, sorted by cost from most expensive to least expensive
 [S: COOTAUCOMiggy] WaterBottle.objects.filter(unit = 'Oz').order_by('-cost')
