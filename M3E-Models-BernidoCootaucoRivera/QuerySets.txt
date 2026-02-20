@@ -1,39 +1,92 @@
 Bon:
 [P: GIVEN] All WaterBottles sorted by brand, alphabetically
-[S: BERNIDOBon] WaterBottle.objects.all().order_by('brand')
+[S: BERNIDOBon] WaterBottle.objects.all().order_by('brand') 
+
 [P: GIVEN] All white HydroFlask WaterBottles
 [S: BERNIDOBon] WaterBottle.objects.filter(brand = "Hydro Flask", color = "White")
+
 [P: Given] All blue WaterBottles supplied by Bucky Inc.
-[S: BERNIDOBon] WaterBottle.objects.filter(color = "Blue", supplied_by__name = "Bucky Inc.")
-[P: Given] [S: BERNIDOBon] WaterBottle.objects.filter(cost__gte = 3000)
-[P: COOTAUCOMiggy] [S: BERNIDOBon] WaterBottle.objects.filter(mouth_size = "Wide Mouth").order_by("size")
-[P: COOTAUCOMiggy] [S: BERNIDOBon] WaterBottle.objects.filter(brand = "Kleen Kanteen")
-[P: COOTAUCOMiggy] [S: BERNIDOBon] WaterBottle.objects.all().order_by("cost")
-[P: RIVERALindsay] [S: BERNIDOBon] Supplier.objects.all().order_by("created_at")
-[P: RIVERALindsay] [S: BERNIDOBon] Supplier.objects.filter(name = "Abbott, Inc.").values("created_at")
-[P: RIVERALindsay] [S: BERNIDOBon] WaterBottle.objects.exclude(current_quantity = 100).exclude(color = "Blue")
+[S: BERNIDOBon] WaterBottle.objects.filter(color = "Blue", supplied_by__name = "Bucky Inc.") 
+
+[P: Given] All WaterBottles that cost 3000 or higher
+[S: BERNIDOBon] WaterBottle.objects.filter(cost__gte = 3000) 
+
+[P: COOTAUCOMiggy] All wide mouth WaterBottles sorted by size
+[S: BERNIDOBon] WaterBottle.objects.filter(mouth_size = "Wide Mouth").order_by("size") 
+
+[P: COOTAUCOMiggy] All Kleen Kanteen WaterBottles
+[S: BERNIDOBon] WaterBottle.objects.filter(brand = "Kleen Kanteen") 
+
+[P: COOTAUCOMiggy] All WaterBottles sorted by price (lowest to highest)
+[S: BERNIDOBon] WaterBottle.objects.all().order_by("cost") 
+
+[P: RIVERALindsay] All suppliers sorted from date created oldest to newest
+[S: BERNIDOBon] Supplier.objects.all().order_by("created_at") 
+
+[P: RIVERALindsay] Only the date when Abbott, Inc. was created
+[S: BERNIDOBon] Supplier.objects.filter(name = "Abbott, Inc.").values("created_at")  
+
+[P: RIVERALindsay] All WaterBottles with a quantity that is not 100 and is not blue
+[S: BERNIDOBon] WaterBottle.objects.exclude(current_quantity = 100).exclude(color = "Blue") 
 
 Miggy:
-[P: Given] [S: COOTAUCOMiggy] WaterBottle.objects.all()
-[P: Given] [S: COOTAUCOMiggy] Supplier.objects.all().order_by('country')
-[P: Given] [S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'black')
-[P: Given] [S: COOTAUCOMiggy] WaterBottle.objects.filter(unit = 'Oz').order_by('-cost')
-[P: RIVERALindsay] [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "Abbott, Inc.").order_by('-size')
-[P: RIVERALindsay] [S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('quantity')
-[P: RIVERALindsay] [S: COOTAUCOMiggy] Supplier.objects.filter(city__icontains="City")
-[P: BERNIDOBon] [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "BF Inc.")
-[P: BERNIDOBon] [S: COOTAUCOMiggy] WaterBottle.objects.filter(Q(color = 'red') | Q(color = 'orange'))
-	### Take note: must add "from django.db.models import Q" and site: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#or 
-[P: BERNIDOBon] [S: COOTAUCOMiggy] Supplier.objects.all().order_by('city')
+[P: GIVEN] All WaterBottles supplied by BF Inc.
+[S: COOTAUCOMiggy] WaterBottle.objects.all() 
+
+[P: GIVEN] all Suppliers sorted by country, alphabetically
+[S: COOTAUCOMiggy] Supplier.objects.all().order_by('country') 
+
+[P: GIVEN] all black WaterBottles
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'black')
+
+[P: GIVEN] all WaterBottles that have Oz as the unit of its size, sorted by cost from most expensive to least expensive
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(unit = 'Oz').order_by('-cost')
+
+[P: RIVERALindsay] All WaterBottles supplied by Abbott, Inc. sorted by size from largest to smallest
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "Abbott, Inc.").order_by('-size') 
+
+[P: RIVERALindsay] All WaterBottles sorted by quantity from smallest to largest
+[S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('quantity')
+
+[P: RIVERALindsay] All suppliers with a city that contains the word “City”
+[S: COOTAUCOMiggy] Supplier.objects.filter(city__icontains="City")
+
+[P: BERNIDOBon] All WaterBottles supplied by BF Inc.
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "BF Inc.") 
+
+[P: BERNIDOBon] All red WaterBottles 
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'red')
+
+[P: BERNIDOBon] All Suppliers sorted alphabetically by city
+[S: COOTAUCOMiggy] Supplier.objects.all().order_by('city')
 
 Lindsay:
-[P: Given] [S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "Sailfish Inc.")
-[P: Given] [S: RIVERALindsay] Supplier.objects.filter(country = "Germany").values("name")
-[P: Given] [S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = 'Bucky Inc.') | WaterBottle.objects.filter(supplied_by__name = 'Meister Inc.')
-[P: Given] [S: RIVERALindsay] WaterBottle.objects.exclude(cost = 3000).filter(mouth_size = "Wide Mouth")
-[P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(color = "Blue")
-[P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(size__contains = "Liter")
-[P: COOTAUCOMiggy] [S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "MGC Inc").order_by("-size")
-[P: BERNIDOBon] [S: RIVERALindsay] WaterBottle.objects.filter(mouth_size = "Standard Mouth").order_by("-cost")
-[P: BERNIDOBon] [S: RIVERALindsay] WaterBottle.objects.filter(cost__lte = 3000)
-[P: BERNIDOBon] [S: RIVERALindsay] WaterBottle.objects.filter(color = "Blue").filter(mouth_size = "Wide Mouth")
+[P: Given] all WaterBottles supplied by Sailfish Inc
+[S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "Sailfish Inc.") 
+
+[P: Given] only the name of the supplier from Germany
+[S: RIVERALindsay] Supplier.objects.filter(country = "Germany").values("name") 
+
+[P: Given] all WaterBottles supplied by EITHER Bucky Inc or Meister Inc
+[S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = 'Bucky Inc.') | WaterBottle.objects.filter(supplied_by__name = 'Meister Inc.')
+
+[P: Given] all WaterBottles with a cost that is NOT 3000 and has a wide mouth
+[S: RIVERALindsay] WaterBottle.objects.exclude(cost = 3000).filter(mouth_size = "Wide Mouth")
+
+[P: COOTAUCOMiggy] All blue WaterBottles
+[S: RIVERALindsay] WaterBottle.objects.filter(color = "Blue") 
+
+[P: COOTAUCOMiggy] All WaterBottles that have Litres as the unit of its size
+[S: RIVERALindsay] WaterBottle.objects.filter(size__contains = "Liter")
+
+[P: COOTAUCOMiggy] All WaterBottles supplied by MGC Inc. sorted by price
+[S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "MGC Inc").order_by("-size")
+
+[P: BERNIDOBon] All WaterBottles with Standard Mouth sorted by cost from highest to lowest
+[S: RIVERALindsay] WaterBottle.objects.filter(mouth_size = "Standard Mouth").order_by("-cost") 
+
+[P: BERNIDOBon] All WaterBottles with cost less than or equal to 3000
+[S: RIVERALindsay] WaterBottle.objects.filter(cost__lte = 3000) 
+
+[P: BERNIDOBon] All blue WaterBottles with Wide Mouth
+[S: RIVERALindsay] WaterBottle.objects.filter(color = "Blue").filter(mouth_size = "Wide Mouth") 
