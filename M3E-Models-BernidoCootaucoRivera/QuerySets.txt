@@ -49,13 +49,13 @@ Miggy:
 [S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('quantity')
 
 [P: RIVERALindsay] All suppliers with a city that contains the word “City”
-[S: COOTAUCOMiggy] Supplier.objects.filter(city__icontains="City")
+[S: COOTAUCOMiggy] Supplier.objects.filter(city__contains="City")
 
 [P: BERNIDOBon] All WaterBottles supplied by BF Inc.
 [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "BF Inc.") 
 
 [P: BERNIDOBon] All red WaterBottles 
-[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'red')
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'Red')
 
 [P: BERNIDOBon] All Suppliers sorted alphabetically by city
 [S: COOTAUCOMiggy] Supplier.objects.all().order_by('city')
