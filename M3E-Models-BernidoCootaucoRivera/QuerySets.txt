@@ -30,7 +30,7 @@ Bon:
 [S: BERNIDOBon] WaterBottle.objects.exclude(current_quantity = 100).exclude(color = "Blue") 
 
 Miggy:
-[P: GIVEN] All WaterBottles supplied by BF Inc.
+[P: GIVEN] All WaterBottles
 [S: COOTAUCOMiggy] WaterBottle.objects.all() 
 
 [P: GIVEN] all Suppliers sorted by country, alphabetically
@@ -40,13 +40,13 @@ Miggy:
 [S: COOTAUCOMiggy] WaterBottle.objects.filter(color = 'Black')
 
 [P: GIVEN] all WaterBottles that have Oz as the unit of its size, sorted by cost from most expensive to least expensive
-[S: COOTAUCOMiggy] WaterBottle.objects.filter(unit = 'Oz').order_by('-cost')
+[S: COOTAUCOMiggy] WaterBottle.objects.filter(size__contains = 'Oz').order_by('-cost')
 
 [P: RIVERALindsay] All WaterBottles supplied by Abbott, Inc. sorted by size from largest to smallest
 [S: COOTAUCOMiggy] WaterBottle.objects.filter(supplied_by__name = "Abbott, Inc.").order_by('-size') 
 
 [P: RIVERALindsay] All WaterBottles sorted by quantity from smallest to largest
-[S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('quantity')
+[S: COOTAUCOMiggy] WaterBottle.objects.all().order_by('current_quantity')
 
 [P: RIVERALindsay] All suppliers with a city that contains the word “City”
 [S: COOTAUCOMiggy] Supplier.objects.filter(city__contains="City")
@@ -80,7 +80,7 @@ Lindsay:
 [S: RIVERALindsay] WaterBottle.objects.filter(size__contains = "Liter")
 
 [P: COOTAUCOMiggy] All WaterBottles supplied by MGC Inc. sorted by price
-[S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "MGC Inc").order_by("-size")
+[S: RIVERALindsay] WaterBottle.objects.filter(supplied_by__name = "MGC Inc").order_by("-cost")
 
 [P: BERNIDOBon] All WaterBottles with Standard Mouth sorted by cost from highest to lowest
 [S: RIVERALindsay] WaterBottle.objects.filter(mouth_size = "Standard Mouth").order_by("-cost") 
