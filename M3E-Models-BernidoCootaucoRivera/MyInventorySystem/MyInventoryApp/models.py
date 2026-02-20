@@ -5,7 +5,7 @@ from django.utils import timezone
 # Create your models here.
 class Supplier(models.Model):
 
-    name = models.CharField(max_length=300)
+    name = models.CharField(max_length=300, unique=True)
     city = models.CharField(max_length=300)
     country = models.CharField(max_length=300)
     created_at = models.DateTimeField(blank=True, null = True)
